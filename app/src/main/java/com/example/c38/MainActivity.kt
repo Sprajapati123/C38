@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,16 +46,39 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainBody() {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(15.dp)
     ) {
-        Text("sandis", style = TextStyle(
-            fontSize = 24.sp,
-            color = Color.Red,
-            fontWeight = FontWeight.W900,
-            fontStyle = FontStyle.Italic,
-            textDecoration = TextDecoration.Underline,
-            textAlign = TextAlign.Center
-        ))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Icon(
+                painter = painterResource(
+                    R.drawable.outline_arrow_back_ios_new_24
+                ),
+                contentDescription = "This is back arrow"
+            )
+            Text(
+                "sandis", style = TextStyle(
+                    fontSize = 24.sp,
+                    color = Color.Red,
+                    fontWeight = FontWeight.W900,
+                    fontStyle = FontStyle.Italic,
+                    textDecoration = TextDecoration.Underline,
+                    textAlign = TextAlign.Center
+                )
+            )
+            Icon(
+                painter = painterResource(
+                    R.drawable.baseline_more_horiz_24
+                ),
+                contentDescription = null
+            )
+        }
+
+
     }
 }
 
