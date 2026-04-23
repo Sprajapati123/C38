@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.colorspace.ColorSpaces
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
@@ -90,18 +91,23 @@ fun MainBody() {
 
         }
 
+        Spacer(
+            modifier = Modifier.height(20.dp)
+        )
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth().padding(top = 20.dp),
+            horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(R.drawable.apple),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(100.dp)
-                    .width(100.dp)
-                    .clip(shape = RoundedCornerShape(100.dp))
+                    .height(70.dp)
+                    .width(70.dp)
+                    .clip(shape = RoundedCornerShape(100.dp)),
+                contentScale = ContentScale.Crop
+
             )
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
