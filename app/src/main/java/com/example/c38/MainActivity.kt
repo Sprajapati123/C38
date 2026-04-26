@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,12 +21,22 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ButtonElevation
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -59,6 +71,7 @@ fun MainBody() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = Color.White)
             .padding(15.dp)
     ) {
         Row(
@@ -88,14 +101,15 @@ fun MainBody() {
                 ),
                 contentDescription = null
             )
-
         }
 
         Spacer(
             modifier = Modifier.height(20.dp)
         )
         Row(
-            modifier = Modifier.fillMaxWidth().padding(top = 20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp),
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -112,18 +126,86 @@ fun MainBody() {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text("174")
+                Text("174", modifier = Modifier.clickable{
+                    print("hello")
+                })
                 Text("Posts")
             }
             Column {
                 Text("1M")
                 Text("Followers")
             }
-            Column {
+            Column(
+                modifier = Modifier.clickable{
+
+                }
+            ) {
                 Text("1M")
                 Text("Followings")
             }
+        }
 
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            ElevatedButton(
+                    modifier = Modifier.weight(2f),
+                shape = RoundedCornerShape(10),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Magenta,
+                    contentColor = Color.Black
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 20.dp
+                ),
+                onClick = {}) {
+                Text("Submit")
+            }
+
+            ElevatedButton(
+                modifier = Modifier.weight(1f),
+                shape = RoundedCornerShape(10),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Blue,
+                    contentColor = Color.Black
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 20.dp
+                ),
+                onClick = {}) {
+                Text("Submit")
+            }
+
+            ElevatedButton(
+                modifier = Modifier.weight(2f),
+                shape = RoundedCornerShape(10),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Blue,
+                    contentColor = Color.Black
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 20.dp
+                ),
+                onClick = {}) {
+                Text("Submit")
+            }
+        }
+
+
+        OutlinedButton (
+
+            onClick = {}) {
+            Text("Submit")
+        }
+
+
+        TextButton (onClick = {}) {
+            Text("Submit")
+        }
+
+
+        IconButton (onClick = {}) {
+            Icon(Icons.Default.Delete,contentDescription = null)
         }
 
 
