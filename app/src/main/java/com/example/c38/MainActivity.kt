@@ -54,6 +54,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.c38.ui.theme.C38Theme
+import com.example.c38.ui.theme.Green
+import com.example.c38.ui.theme.SmokyWhite
 
 class MainActivity : ComponentActivity() {
 
@@ -145,15 +147,21 @@ fun MainBody() {
             }
         }
 
+
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
+            ElevatedButton(onClick = {}) {
+                Text("Submit")
+            }
+
+
             ElevatedButton(
                     modifier = Modifier.weight(2f),
                 shape = RoundedCornerShape(10),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Magenta,
-                    contentColor = Color.Black
+                    containerColor = Green,
+                    contentColor = SmokyWhite
                 ),
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 20.dp

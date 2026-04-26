@@ -15,6 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C38">
         <activity
+            android:name=".CardActivity"
+            android:exported="false"
+            android:label="@string/title_activity_card"
+            android:theme="@style/Theme.C38" />
+        <activity
             android:name=".DashboardActivity"
             android:exported="true"
             android:label="@string/title_activity_dashboard"
