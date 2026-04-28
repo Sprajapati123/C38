@@ -3,8 +3,9 @@ package com.example.c38.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
+val Blue = Color(0xFF7142E1)
 
-val SmokyWhite = Color(0xFFBDBBC1)
+val SmokyWhite = Color(0xFFAEADB1)
 val Green = Color(0xFF69DBA8)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
