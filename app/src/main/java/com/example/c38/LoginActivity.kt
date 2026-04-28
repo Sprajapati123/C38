@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -71,17 +72,25 @@ fun LoginBody() {
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
         ) {
             Card(
                 modifier = Modifier
                     .height(60.dp)
                     .weight(1f)
-            ) { }
+            ) {
+                Row(modifier = Modifier.fillMaxSize()) {
 
-            Card(modifier = Modifier
-                .height(60.dp)
-                .weight(1f)) { }
+                }
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            Card(
+                modifier = Modifier
+                    .height(60.dp)
+                    .weight(1f)
+            ) { }
         }
 
 
