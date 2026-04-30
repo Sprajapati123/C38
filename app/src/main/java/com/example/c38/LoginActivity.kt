@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -87,7 +88,7 @@ fun LoginBody() {
                     .height(60.dp)
                     .weight(1f),
                 colors = CardDefaults.cardColors(
-                    containerColor = PurpleGrey40
+                    containerColor = Color.Gray.copy(alpha = 0.1f)
                 )
             ) {
                 Row(
@@ -106,11 +107,30 @@ fun LoginBody() {
             }
             Spacer(modifier = Modifier.width(20.dp))
             Card(
+                shape = RoundedCornerShape(12.dp),
                 modifier = Modifier
                     .height(60.dp)
-                    .weight(1f)
-            ) { }
+                    .weight(1f),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Gray.copy(alpha = 0.1f)
+                )
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.google),
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp)
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text("Google")
+                }
+            }
         }
+
 
 
     }
