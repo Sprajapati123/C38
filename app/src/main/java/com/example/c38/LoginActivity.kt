@@ -82,57 +82,55 @@ fun LoginBody() {
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
         ) {
-            Card(
-                shape = RoundedCornerShape(12.dp),
+            LoginCard(
                 modifier = Modifier
                     .height(60.dp)
                     .weight(1f),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.Gray.copy(alpha = 0.1f)
-                )
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                    ) {
-                    Image(
-                        painter = painterResource(R.drawable.faceebook),
-                        contentDescription = null,
-                        modifier = Modifier.size(30.dp)
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text("Facebook")
-                }
-            }
+                image = R.drawable.faceebook,
+                label = "Facebook"
+            )
             Spacer(modifier = Modifier.width(20.dp))
-            Card(
-                shape = RoundedCornerShape(12.dp),
+            LoginCard(
                 modifier = Modifier
                     .height(60.dp)
                     .weight(1f),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.Gray.copy(alpha = 0.1f)
-                )
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.google),
-                        contentDescription = null,
-                        modifier = Modifier.size(30.dp)
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text("Google")
-                }
-            }
+                image = R.drawable.google,
+                label = "Google"
+            )
+
         }
 
 
 
+    }
+}
+
+@Composable
+fun LoginCard(
+    modifier: Modifier,
+    image : Int,
+    label : String
+){
+    Card(
+        shape = RoundedCornerShape(12.dp),
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Gray.copy(alpha = 0.1f)
+        )
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Image(
+                painter = painterResource(image),
+                contentDescription = null,
+                modifier = Modifier.size(30.dp)
+            )
+            Spacer(modifier = Modifier.width(10.dp))
+            Text(label)
+        }
     }
 }
 
