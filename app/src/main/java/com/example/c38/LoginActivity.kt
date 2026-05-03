@@ -1,5 +1,7 @@
 package com.example.c38
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -7,6 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -71,6 +75,9 @@ fun LoginBody() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var visibility by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val activity = context as Activity
 
     Column(
         modifier = Modifier
@@ -169,8 +176,8 @@ fun LoginBody() {
                 password = it
             },
             visualTransformation = if (visibility)
-                                  VisualTransformation.None
-                                         else PasswordVisualTransformation(),
+                VisualTransformation.None
+            else PasswordVisualTransformation(),
             trailingIcon = {
                 IconButton(onClick = {
                     visibility = !visibility
@@ -199,6 +206,23 @@ fun LoginBody() {
                 focusedIndicatorColor = Color.Blue,
             )
         )
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        Row {
+            Text("Don't have account ")
+            Text(
+                "Sign up",
+                modifier = Modifier.clickable {
+
+                    val intent = Intent(context,
+                        RegistrationActivity::class.java)
+
+                    context.startActivity(intent)
+                },
+                style = TextStyle(color = Color.Blue)
+            )
+        }
 
     }
 }
