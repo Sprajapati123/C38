@@ -43,6 +43,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -68,6 +70,7 @@ fun LoginBody() {
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var visibility by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -119,7 +122,9 @@ fun LoginBody() {
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth().padding(all = 20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             HorizontalDivider(
@@ -155,6 +160,7 @@ fun LoginBody() {
             )
         )
 
+        Spacer(modifier = Modifier.height(15.dp))
 
         OutlinedTextField(
             value = password,
@@ -162,11 +168,21 @@ fun LoginBody() {
                 //ram
                 password = it
             },
-//            leadingIcon = { Icon(Icons.Default.Email,contentDescription = null) },
+            visualTransformation = if (visibility)
+                                  VisualTransformation.None
+                                         else PasswordVisualTransformation(),
             trailingIcon = {
-                IconButton(onClick = {}) {
+                IconButton(onClick = {
+                    visibility = !visibility
+                }) {
                     Icon(
-                        painter = painterResource(R.drawable.baseline_visibility_24),
+                        painter =
+                            if (visibility)
+                                painterResource(R.drawable.baseline_visibility_24)
+                            else
+                                painterResource(
+                                    R.drawable.baseline_visibility_off_24
+                                ),
                         contentDescription = null
                     )
                 }
