@@ -1,5 +1,8 @@
 package com.example.c38
 
+import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -25,6 +28,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -41,6 +45,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -69,11 +74,19 @@ class RegistrationActivity : ComponentActivity() {
 @Composable
 fun RegistrationBody() {
 
+//    var email : String = ""
+//    vs
     var email by remember { mutableStateOf("") }
+
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var address by remember { mutableStateOf("") }
+
     var visibility by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val activity = context as Activity
+
 
     Column(
         modifier = Modifier
@@ -195,19 +208,19 @@ fun RegistrationBody() {
 
         Spacer(modifier = Modifier.height(15.dp))
 
-        Row {
-            Text("Don't have account ")
-            Text("Sign up",
-                modifier = Modifier.clickable{
 
-                },
-                style = TextStyle(color = Color.Blue)
-            )
+        ElevatedButton(onClick = {
+            val sharedPreferences = context.getSharedPreferences(
+                                                        "User",
+                                                Context.MODE_PRIVATE
+                                                    )
+
+        }) {
+            Text("Signup")
         }
 
     }
 }
-
 
 
 @Preview

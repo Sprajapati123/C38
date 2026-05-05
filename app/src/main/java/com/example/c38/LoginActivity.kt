@@ -214,11 +214,14 @@ fun LoginBody() {
             Text(
                 "Sign up",
                 modifier = Modifier.clickable {
-
-                    val intent = Intent(context,
-                        RegistrationActivity::class.java)
-
+                    val intent = Intent(
+                        context,
+                        RegistrationActivity::class.java
+                    )
                     context.startActivity(intent)
+
+                    //destroy source screen
+//                    activity.finish()
                 },
                 style = TextStyle(color = Color.Blue)
             )
