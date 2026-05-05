@@ -214,6 +214,14 @@ fun RegistrationBody() {
                                                         "User",
                                                 Context.MODE_PRIVATE
                                                     )
+            val editor = sharedPreferences.edit()
+
+            editor.putString("email",email)
+            editor.putString("password",password)
+            editor.putString("name",name)
+            editor.putString("address",address)
+
+            editor.apply()
 
         }) {
             Text("Signup")
