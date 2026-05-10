@@ -226,6 +226,11 @@ fun LoginBody() {
                     Toast.makeText(context,
                         "Login success",
                         Toast.LENGTH_LONG).show()
+
+                    val intent = Intent(context,
+                        DashboardActivity::class.java)
+                    context.startActivity(intent)
+                    activity.finish()
                 }else{
                     Toast.makeText(context,
                         "Login failed",
