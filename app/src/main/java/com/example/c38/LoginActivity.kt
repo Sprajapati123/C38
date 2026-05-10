@@ -219,6 +219,9 @@ fun LoginBody() {
                     "User",
                     Context.MODE_PRIVATE
                 )
+
+
+
                 val emailStorage : String?= sharedPreferences.getString("email","")
                 val passwordStorage : String?= sharedPreferences.getString("password","")
 
@@ -226,6 +229,10 @@ fun LoginBody() {
                     Toast.makeText(context,
                         "Login success",
                         Toast.LENGTH_LONG).show()
+
+                    val editor = sharedPreferences.edit()
+
+                    editor.putBoolean("isLoggedIn",true)
 
                     val intent = Intent(context,
                         DashboardActivity::class.java)
