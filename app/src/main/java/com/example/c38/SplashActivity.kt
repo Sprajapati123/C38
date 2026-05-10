@@ -43,7 +43,7 @@ fun SplashBody() {
     val activity = context as Activity
     LaunchedEffect(Unit) {
 
-        delay(300)
+        delay(3000)
         val sharedPreferences = context.getSharedPreferences(
             "User",
             Context.MODE_PRIVATE
