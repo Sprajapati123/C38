@@ -1,9 +1,11 @@
 package com.example.c38
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +29,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -207,6 +210,33 @@ fun LoginBody() {
             )
         )
 
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        ElevatedButton(
+            onClick = {
+                val sharedPreferences = context.getSharedPreferences(
+                    "User",
+                    Context.MODE_PRIVATE
+                )
+                val emailStorage : String?= sharedPreferences.getString("email","")
+                val passwordStorage : String?= sharedPreferences.getString("password","")
+
+                if(email == emailStorage && password == passwordStorage){
+                    Toast.makeText(context,
+                        "Login success",
+                        Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(context,
+                        "Login failed",
+                        Toast.LENGTH_LONG).show()
+
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Login")
+        }
         Spacer(modifier = Modifier.height(15.dp))
 
         Row {
