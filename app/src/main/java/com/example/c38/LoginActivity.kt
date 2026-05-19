@@ -221,27 +221,29 @@ fun LoginBody() {
                 )
 
 
+                val emailStorage: String? = sharedPreferences.getString("email", "")
+                val passwordStorage: String? = sharedPreferences.getString("password", "")
 
-                val emailStorage : String?= sharedPreferences.getString("email","")
-                val passwordStorage : String?= sharedPreferences.getString("password","")
-
-                if(email == emailStorage && password == passwordStorage){
-                    Toast.makeText(context,
+                if (email == emailStorage && password == passwordStorage) {
+                    Toast.makeText(
+                        context,
                         "Login success",
-                        Toast.LENGTH_LONG).show()
+                        Toast.LENGTH_LONG
+                    ).show()
 
                     val editor = sharedPreferences.edit()
 
-                    editor.putBoolean("isLoggedIn",true)
+                    editor.putBoolean("isLoggedIn", true)
 
-                    val intent = Intent(context,
-                        DashboardActivity::class.java)
+                    val intent = Intent(context, NaviigationActivity::class.java)
                     context.startActivity(intent)
                     activity.finish()
-                }else{
-                    Toast.makeText(context,
+                } else {
+                    Toast.makeText(
+                        context,
                         "Login failed",
-                        Toast.LENGTH_LONG).show()
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 }
             },
