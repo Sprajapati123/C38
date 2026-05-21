@@ -1,0 +1,56 @@
+package com.example.c38.repo
+
+import com.example.c38.model.UserModel
+import javax.security.auth.callback.Callback
+
+interface UserRepo {
+
+//    {
+//    "success": true
+//     "message": "OTP link has been sent to your email"
+//    }
+
+    fun login(
+        email: String, password: String,
+        callback: (Boolean, String) -> Unit
+    )
+
+
+    fun forgetPassword(
+        email: String,
+        callback: (Boolean, String) -> Unit
+    )
+
+    //    {
+//    "success": true
+//     "message": "all user fetched"
+//    }
+
+    fun getUserById(
+        id: String,
+        callback: (Boolean, String, UserModel?) -> Unit
+    )
+
+    fun getAllUser(callback: (Boolean, String, List<UserModel?>) -> Unit)
+
+
+    fun logout(callback: (Boolean, String) -> Unit)
+
+    //    {
+//    "success": true
+//     "message": "registered",
+//    "userId":""fsdgdfhrtserawedsfdg"
+//    }
+    //authentication
+    fun register(email: String, password: String,
+                 callback: (Boolean, String, String) -> Unit)
+    //    {
+//    "success": true
+//     "message": "registered",
+//    }
+    //real-time database
+    fun addUser(id:String,model: UserModel,callback: (Boolean, String) -> Unit)
+
+    fun editProfile()
+
+}
