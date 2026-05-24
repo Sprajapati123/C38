@@ -1,7 +1,6 @@
 package com.example.c38.repo
 
 import com.example.c38.model.UserModel
-import javax.security.auth.callback.Callback
 
 interface UserRepo {
 
@@ -42,15 +41,19 @@ interface UserRepo {
 //    "userId":""fsdgdfhrtserawedsfdg"
 //    }
     //authentication
-    fun register(email: String, password: String,
-                 callback: (Boolean, String, String) -> Unit)
+    fun register(
+        email: String, password: String,
+        callback: (Boolean, String, String) -> Unit
+    )
+
     //    {
 //    "success": true
 //     "message": "registered",
 //    }
     //real-time database
-    fun addUser(id:String,model: UserModel,callback: (Boolean, String) -> Unit)
+    fun addUser(id: String, model: UserModel, callback: (Boolean, String) -> Unit)
 
-    fun editProfile()
+    fun editProfile(id: String, model: UserModel, callback: (Boolean, String) -> Unit)
 
+    fun deleteUser(id: String,callback: (Boolean, String) -> Unit)
 }
