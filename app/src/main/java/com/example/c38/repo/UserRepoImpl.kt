@@ -75,6 +75,7 @@ class UserRepoImpl : UserRepo {
                 }
             }
     }
+
     //C RUD
     override fun addUser(
         id: String,
@@ -83,14 +84,14 @@ class UserRepoImpl : UserRepo {
     ) {
         //to auto generate id
 //        val id = ref.push().key.toString()
-      ref.child(id).setValue(model).addOnCompleteListener {
-          if(it.isSuccessful){
-              callback(true,"User registered")
-          }else{
-              callback(false,"${it.exception?.message}")
+        ref.child(id).setValue(model).addOnCompleteListener {
+            if (it.isSuccessful) {
+                callback(true, "User registered")
+            } else {
+                callback(false, "${it.exception?.message}")
 
-          }
-      }
+            }
+        }
     }
 
     override fun editProfile(
@@ -98,13 +99,28 @@ class UserRepoImpl : UserRepo {
         model: UserModel,
         callback: (Boolean, String) -> Unit
     ) {
-        TODO("Not yet implemented")
+        ref.child(id).updateChildren(model.toMap()).addOnCompleteListener {
+            if(it.isSuccessful){
+                callback(true,"Profile updated")
+            }else{
+                callback(false,"${it.exception?.message}")
+
+            }
+        }
+
     }
 
     override fun deleteUser(
         id: String,
         callback: (Boolean, String) -> Unit
     ) {
-        TODO("Not yet implemented")
+        ref.child(id).removeValue().addOnCompleteListener {
+            if(it.isSuccessful){
+                callback(true,"Account deleted successfully")
+            }else{
+                callback(false,"${it.exception?.message}")
+
+            }
+        }
     }
 }
