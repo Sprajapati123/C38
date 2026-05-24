@@ -2,7 +2,10 @@ package com.example.c38.repo
 
 import com.example.c38.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class UserRepoImpl : UserRepo {
 
@@ -44,11 +47,44 @@ class UserRepoImpl : UserRepo {
         id: String,
         callback: (Boolean, String, UserModel?) -> Unit
     ) {
-        TODO("Not yet implemented")
+       ref.child(id).addValueEventListener(object : ValueEventListener{
+           override fun onDataChange(snapshot: DataSnapshot) {
+               if(snapshot.exists()){
+                   val user = snapshot.getValue(UserModel::class.java)
+//                   if(user != null){
+//                       callback(true,"user fetched",user)
+//                   }
+                   user.let {
+                       callback(true,"user fetched",it)
+                   }
+               }
+           }
+
+           override fun onCancelled(error: DatabaseError) {
+               callback(false,"${error.message}",null)
+           }
+       })
     }
 
     override fun getAllUser(callback: (Boolean, String, List<UserModel?>) -> Unit) {
-        TODO("Not yet implemented")
+        ref.addValueEventListener(object  : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    val allUsers = mutableListOf<UserModel>()
+                    for(user in snapshot.children){
+                        val data = user.getValue(UserModel::class.java)
+                        if(data != null){
+                            allUsers.add(data)
+                        }
+                    }
+                    callback(true,"fetched",allUsers)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(false,error.message,emptyList())
+            }
+        })
     }
 
     override fun logout(callback: (Boolean, String) -> Unit) {
