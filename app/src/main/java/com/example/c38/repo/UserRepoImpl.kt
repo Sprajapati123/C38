@@ -61,7 +61,7 @@ class UserRepoImpl : UserRepo {
            }
 
            override fun onCancelled(error: DatabaseError) {
-               callback(false,"${error.message}",null)
+               callback(false, error.message,null)
            }
        })
     }
@@ -155,7 +155,6 @@ class UserRepoImpl : UserRepo {
                 callback(true,"Account deleted successfully")
             }else{
                 callback(false,"${it.exception?.message}")
-
             }
         }
     }
