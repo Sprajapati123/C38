@@ -56,6 +56,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.c38.model.UserModel
 import com.example.c38.repo.UserRepoImpl
 import com.example.c38.ui.theme.Blue
 import com.example.c38.ui.theme.C38Theme
@@ -221,7 +222,23 @@ fun RegistrationBody() {
             userViewModel.register(email,password){
                 success,msg,userId->
                 if(success){
-
+                    var model = UserModel(
+                        id = userId,
+                        name = name,
+                        email = email,
+                        address = address,
+                        contact = ""
+                    )
+                    userViewModel.addUser(userId,model){
+                        success,msg->
+                        if(success){
+                            Toast.makeText(context,msg,
+                                Toast.LENGTH_LONG).show()
+                        }else{
+                            Toast.makeText(context,msg,
+                                Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }else{
                     Toast.makeText(context,msg,
                         Toast.LENGTH_LONG).show()
