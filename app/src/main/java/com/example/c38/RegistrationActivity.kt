@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -55,11 +56,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.c38.repo.UserRepoImpl
 import com.example.c38.ui.theme.Blue
 import com.example.c38.ui.theme.C38Theme
 import com.example.c38.ui.theme.Purple40
 import com.example.c38.ui.theme.PurpleGrey40
 import com.example.c38.ui.theme.SmokyWhite
+import com.example.c38.viewmodel.UserViewModel
 
 class RegistrationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +79,10 @@ fun RegistrationBody() {
 
 //    var email : String = ""
 //    vs
+
+    val userViewModel = remember {   UserViewModel(UserRepoImpl()) }
+
+
     var email by remember { mutableStateOf("") }
 
     var password by remember { mutableStateOf("") }
@@ -210,18 +217,29 @@ fun RegistrationBody() {
 
 
         ElevatedButton(onClick = {
-            val sharedPreferences = context.getSharedPreferences(
-                                                        "User",
-                                                Context.MODE_PRIVATE
-                                                    )
-            val editor = sharedPreferences.edit()
 
-            editor.putString("email",email)
-            editor.putString("password",password)
-            editor.putString("name",name)
-            editor.putString("address",address)
+            userViewModel.register(email,password){
+                success,msg,userId->
+                if(success){
 
-            editor.apply()
+                }else{
+                    Toast.makeText(context,msg,
+                        Toast.LENGTH_LONG).show()
+                }
+            }
+
+//            val sharedPreferences = context.getSharedPreferences(
+//                                                        "User",
+//                                                Context.MODE_PRIVATE
+//                                                    )
+//            val editor = sharedPreferences.edit()
+//
+//            editor.putString("email",email)
+//            editor.putString("password",password)
+//            editor.putString("name",name)
+//            editor.putString("address",address)
+//
+//            editor.apply()
 
         }) {
             Text("Signup")
