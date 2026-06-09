@@ -38,6 +38,7 @@ class ProductViewModel(val repo: ProductRepo) : ViewModel() {
         }
     }
     fun getProductByID(id: String){
+
         repo.getProductByID(id) { success, msg, products ->
             if(success){
                 _products.value = products

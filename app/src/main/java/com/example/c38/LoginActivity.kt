@@ -215,6 +215,7 @@ fun LoginBody() {
 
         ElevatedButton(
             onClick = {
+
                 val sharedPreferences = context.getSharedPreferences(
                     "User",
                     Context.MODE_PRIVATE
@@ -249,6 +250,7 @@ fun LoginBody() {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
+
             Text("Login")
         }
         Spacer(modifier = Modifier.height(15.dp))
